@@ -13,7 +13,7 @@
   "main": "dist/html-to-docx.umd.js",
   "module": "dist/html-to-docx.esm.js",
   "scripts": {
-    "test": "jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest tests/",
     "release": "standard-version",
     "lint": "eslint --fix .",
     "prettier:check": "prettier --check '**/*.{js}'",
