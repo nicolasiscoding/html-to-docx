@@ -414,10 +414,15 @@ const buildRun = async (vNode, attributes, docxDocumentInstance) => {
   const runFragment = fragment({ namespaceAlias: { w: namespaces.w } }).ele('@w', 'r');
   const runPropertiesFragment = buildRunProperties(cloneDeep(attributes));
 
+  // case where we have recursive spans representing font changes
+  if (isVNode(vNode) && vNode.tagName === 'span') {
+    // eslint-disable-next-line no-use-before-define
+    return buildRunOrRuns(vNode, attributes, docxDocumentInstance);
+  }
+
   if (
     isVNode(vNode) &&
     [
-      'span',
       'strong',
       'b',
       'em',
